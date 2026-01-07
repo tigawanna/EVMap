@@ -21,6 +21,7 @@ import androidx.car.app.model.Pane
 import androidx.car.app.model.Place
 import androidx.car.app.model.PlaceMarker
 import androidx.car.app.model.Row
+import androidx.car.app.model.RowSection
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 import net.vonforst.evmap.R
@@ -54,7 +55,7 @@ class ChargerListFormatter(
     private val iconGen = ChargerIconGenerator(carContext, null, height = 96)
     var favorites: Set<Long> = emptySet()
 
-    fun buildChargerList(
+    fun buildChargerListLegacy(
         chargers: List<ChargeLocation>?,
         availabilities: Map<Long, Pair<ZonedDateTime, ChargeLocationStatus?>>
     ): ItemList? {
@@ -93,6 +94,55 @@ class ChargerListFormatter(
                 builder.build()
             } else if (screen.locationError) {
                 val builder = ItemList.Builder()
+                builder.setNoItemsMessage(
+                    carContext.getString(R.string.location_error)
+                )
+                builder.build()
+            } else {
+                null
+            }
+        }
+    }
+
+    fun buildChargerList(
+        chargers: List<ChargeLocation>?,
+        availabilities: Map<Long, Pair<ZonedDateTime, ChargeLocationStatus?>>
+    ): RowSection? {
+        return if (chargers != null) {
+            val chargerList = chargers.take(screen.maxRows)
+            val builder = RowSection.Builder()
+            // only show the city if not all chargers are in the same city
+            val showCity = chargerList.map { it.address?.city }.distinct().size > 1
+            chargerList.forEach { charger ->
+                builder.addItem(
+                    formatCharger(
+                        charger,
+                        availabilities,
+                        showCity,
+                        charger.id in favorites
+                    )
+                )
+            }
+            builder.setNoItemsMessage(
+                carContext.getString(
+                    if (screen.filterStatus == FILTERS_FAVORITES) {
+                        R.string.auto_no_favorites_found
+                    } else {
+                        R.string.auto_no_chargers_found
+                    }
+                )
+            )
+            builder.setOnItemVisibilityChangedListener(screen)
+            builder.build()
+        } else {
+            if (screen.loadingError) {
+                val builder = RowSection.Builder()
+                builder.setNoItemsMessage(
+                    carContext.getString(R.string.connection_error)
+                )
+                builder.build()
+            } else if (screen.locationError) {
+                val builder = RowSection.Builder()
                 builder.setNoItemsMessage(
                     carContext.getString(R.string.location_error)
                 )
