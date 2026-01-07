@@ -330,7 +330,7 @@ dependencies {
     implementation("com.github.ev-map:locale-config-x:58b036abf4")
 
     // Android Auto
-    val carAppVersion = "1.7.0"
+    val carAppVersion = "1.8.0-beta01"
     implementation("androidx.car.app:app:$carAppVersion")
     normalImplementation("androidx.car.app:app-projected:$carAppVersion")
     automotiveImplementation("androidx.car.app:app-automotive:$carAppVersion")
