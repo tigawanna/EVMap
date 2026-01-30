@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -287,6 +288,7 @@ class MapsActivity : AppCompatActivity(),
                     R.string.no_maps_app_found,
                     Snackbar.LENGTH_SHORT
                 ).show()
+                Log.e("MapsActivity", "no navigation app found")
             }
         }
     }
@@ -351,6 +353,7 @@ class MapsActivity : AppCompatActivity(),
                     R.string.no_browser_app_found,
                     Snackbar.LENGTH_SHORT
                 ).show()
+                Log.e("MapsActivity", "no web browser found")
             }
         }
     }
@@ -368,6 +371,7 @@ class MapsActivity : AppCompatActivity(),
                 R.string.no_share_app_found,
                 Snackbar.LENGTH_SHORT
             ).show()
+            Log.e("MapsActivity", "no sharing app found")
         }
     }
 
