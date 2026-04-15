@@ -1,0 +1,8 @@
+Improvements:
+- Improvements to Nobil data source
+- Android Auto: Avoid accidental deletion of filter profiles
+
+Bugfixes:
+- Display error after closing photo gallery using back button
+- Android Auto: Fix sorting of charger list by distance
+- Fixed crashes

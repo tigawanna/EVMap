@@ -1,0 +1,8 @@
+Verbesserungen:
+- Verbesserungen an der Datenquelle Nobil
+- Android Auto: Versehentliches Löschen von Filterprofilen vermeiden
+
+Fehler behoben:
+- Anzeigefehler nach Schließen der Bildergalerie über Zurück-Button
+- Android Auto: Korrekte Sortierung nach Abstand
+- Abstürze behoben
