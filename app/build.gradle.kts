@@ -320,7 +320,7 @@ dependencies {
     implementation("com.squareup.moshi:moshi-adapters:1.15.2")
     implementation("com.markomilos.jsonapi:jsonapi-retrofit:1.1.0")
     implementation("io.coil-kt:coil:2.7.0")
-    implementation("com.github.ev-map:StfalconImageViewer:5082ebd392")
+    implementation("com.github.ev-map:StfalconImageViewer:c6ba219517")
     implementation("com.mikepenz:aboutlibraries-core:$aboutLibsVersion")
     implementation("com.mikepenz:aboutlibraries:$aboutLibsVersion")
     implementation("com.airbnb.android:lottie:6.6.10")
