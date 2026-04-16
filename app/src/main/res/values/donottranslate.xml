@@ -29,7 +29,7 @@
     <string name="hide_on_scroll_fab_behavior">net.vonforst.evmap.ui.HideOnScrollFabBehavior</string>
     <string name="paypal_link" translatable="false">https://paypal.me/johan98</string>
     <string name="donate_link" translatable="false">https://ev-map.app/donate/</string>
-    <string name="copyright_summary">©2020–2024 Johan von Forstner and contributors</string>
+    <string name="copyright_summary">©2020–2026 Johan von Forstner and contributors</string>
     <string name="acra_backend_url" translatable="false">https://acra.muc.vonforst.net/report</string>
     <string name="maplibre_attributionsDialogTitle">MapLibre Maps SDK for Android</string>
 </resources>
