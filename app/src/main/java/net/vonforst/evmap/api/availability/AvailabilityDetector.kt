@@ -176,8 +176,7 @@ class AvailabilityRepository(context: Context) {
         teslaOwnerAvailabilityDetector,
         TeslaGuestAvailabilityDetector(okhttp),
         NobilAvailabilityDetector(okhttp, context),
-        EnBwAvailabilityDetector(okhttp),
-        NewMotionAvailabilityDetector(okhttp)
+        EnBwAvailabilityDetector(okhttp)
     )
 
     suspend fun getAvailability(charger: ChargeLocation): Resource<ChargeLocationStatus> {
