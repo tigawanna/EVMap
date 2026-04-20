@@ -136,17 +136,8 @@ class EnBwAvailabilityDetector(client: OkHttpClient, baseUrl: String? = null) :
         var markers =
             api.getMarkers(lng - coordRange, lng + coordRange, lat - coordRange, lat + coordRange)
 
-        markers = markers.flatMap {
-            if (it.grouped) {
-                api.getMarkers(
-                    it.viewPort.lowerLeftLon,
-                    it.viewPort.upperRightLon,
-                    it.viewPort.lowerLeftLat,
-                    it.viewPort.upperRightLat
-                )
-            } else {
-                listOf(it)
-            }
+        repeat(3) {
+            markers = ungroupMarkers(markers)
         }
         if (markers.any { it.grouped }) throw AvailabilityDetectorException("markers still grouped")
 
@@ -240,6 +231,20 @@ class EnBwAvailabilityDetector(client: OkHttpClient, baseUrl: String? = null) :
             lastChange = lastChange
         )
     }
+
+    private suspend fun ungroupMarkers(markers: List<EnBwApi.EnBwLocation>): List<EnBwApi.EnBwLocation> =
+        markers.flatMap {
+            if (it.grouped) {
+                api.getMarkers(
+                    it.viewPort.lowerLeftLon,
+                    it.viewPort.upperRightLon,
+                    it.viewPort.lowerLeftLat,
+                    it.viewPort.upperRightLat
+                )
+            } else {
+                listOf(it)
+            }
+        }
 
     override fun isChargerSupported(charger: ChargeLocation): Boolean {
         val country = charger.chargepriceData?.country ?: charger.address?.country
