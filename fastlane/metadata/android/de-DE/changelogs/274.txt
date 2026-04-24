@@ -1,0 +1,2 @@
+Verbesserungen:
+- Verbesserungen bei Echtzeitstatus
