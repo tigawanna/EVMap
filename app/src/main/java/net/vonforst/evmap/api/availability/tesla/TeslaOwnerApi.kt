@@ -25,7 +25,7 @@ interface TeslaAuthenticationApi {
     class AuthCodeRequest(
         val code: String,
         @Json(name = "code_verifier") val codeVerifier: String,
-        @Json(name = "redirect_uri") val redirectUri: String = "https://auth.tesla.com/void/callback",
+        @Json(name = "redirect_uri") val redirectUri: String = "tesla://auth/callback",
         scope: String = "openid email offline_access",
         @Json(name = "client_id") clientId: String = "ownerapi"
     ) : OAuth2Request(scope, clientId)
@@ -98,13 +98,13 @@ interface TeslaAuthenticationApi {
                 .appendQueryParameter("client_id", "ownerapi")
                 .appendQueryParameter("code_challenge", codeChallenge)
                 .appendQueryParameter("code_challenge_method", "S256")
-                .appendQueryParameter("redirect_uri", "https://auth.tesla.com/void/callback")
+                .appendQueryParameter("redirect_uri", "tesla://auth/callback")
                 .appendQueryParameter("response_type", "code")
                 .appendQueryParameter("scope", "openid email offline_access phone")
                 .appendQueryParameter("is_in_app", "true")
                 .appendQueryParameter("state", "123").build()
 
-        val resultUrlPrefix = "https://auth.tesla.com/void/callback"
+        val resultUrlPrefix = "tesla://auth/callback"
     }
 }
 
