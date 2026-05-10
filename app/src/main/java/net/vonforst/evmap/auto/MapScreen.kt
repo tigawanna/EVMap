@@ -21,9 +21,9 @@ import androidx.car.app.model.ActionStrip
 import androidx.car.app.model.CarColor
 import androidx.car.app.model.CarIcon
 import androidx.car.app.model.Header
-import androidx.car.app.model.ListTemplate
 import androidx.car.app.model.MessageTemplate
 import androidx.car.app.model.PaneTemplate
+import androidx.car.app.model.SectionedItemTemplate
 import androidx.car.app.model.Template
 import androidx.car.app.navigation.model.MapController
 import androidx.car.app.navigation.model.MapWithContentTemplate
@@ -213,7 +213,7 @@ class MapScreen(ctx: CarContext, val session: EVMapSession) :
                     }.build())
                 }.build()
         } else {
-            ListTemplate.Builder().apply {
+            SectionedItemTemplate.Builder().apply {
                 setHeader(Header.Builder().apply {
                     setTitle(title)
                     setStartHeaderAction(Action.APP_ICON)
@@ -223,8 +223,10 @@ class MapScreen(ctx: CarContext, val session: EVMapSession) :
                     chargers?.filterIsInstance<ChargeLocation>(),
                     availabilities
                 )?.let {
-                    setSingleList(it)
+                    addSection(it)
                 } ?: setLoading(true)
+
+                setScrollStatePersistenceStrategy(SectionedItemTemplate.SCROLL_STATE_PRESERVE_INDEX)
             }.build()
         }
         return MapWithContentTemplate.Builder().apply {

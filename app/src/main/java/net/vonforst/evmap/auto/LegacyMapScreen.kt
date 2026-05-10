@@ -58,7 +58,6 @@ import java.io.IOException
 import java.time.Duration
 import java.time.Instant
 import java.time.ZonedDateTime
-import kotlin.collections.set
 import kotlin.math.abs
 import kotlin.math.min
 
@@ -164,7 +163,7 @@ class LegacyMapScreen(ctx: CarContext, val session: EVMapSession) :
                     setAnchor(Place.Builder(CarLocation.create(it.latitude, it.longitude)).build())
                 }
             }
-            formatter.buildChargerList(chargers, availabilities)?.let {
+            formatter.buildChargerListLegacy(chargers, availabilities)?.let {
                 setItemList(it)
             } ?: setLoading(true)
             setCurrentLocationEnabled(true)
