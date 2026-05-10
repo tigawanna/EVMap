@@ -1,0 +1,3 @@
+Bugfixes:
+- Android Auto: Keep scroll position after refresh
+- Tesla login was not working
